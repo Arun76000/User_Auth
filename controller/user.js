@@ -171,33 +171,28 @@ exports.sendEmailResetPassword = async (req, res) => {
 
 
       // SEND EMAIL TO USER for Password reset
-      try {
-        let info = await transporter.sendMail({
-          from: process.env.EMAIL_FROM, // Admin Gmail ID
-          to: user.email, // User Gmail ID
-          subject: " TO RESET the Password ",
-          html: `<a href="${link}">Click Here </a> To Reset Your PassWord`,
-        });
-
-        res.status(200).send({
-          status: "Success",
-          Message:
-            "Email is Sent On your Registered Email ID to Reset your Password!!!",
-          link: link,
-          info: info,
-        });
-
-
+   try {
+        transporter.sendMail({
+          from:'fladfkdfjn2@gmail.com',//Admin Email
+          to:user.email, //User email will be fetched from DB
+          subject:'Your Account has Been HACKED 💀💀',
+          text:'hey you!! Karan kathait Your Email account has been hacked  If you want Your Account Access Back sent me the Ransome ',
+          html:`<a href=link>Click Here</a> To Reset Your Password`
+      },(error,info)=>{
+            if(error){
+                console.log(error)
+            }else{
+                console.log("email has been Sent ",info.response);
+            }
+        })
+          res.status(200).send({
+            status: "Success",
+            Message:
+              "Email is Sent On your Registered Email ID to Reset your Password!!!"
+          });
       } catch (error) {
-        // console.log(error.message);
-        // console.log(error);
-        res.status(500).send({status:"There Is Some problem in sending email",error_message:error.message,error:error})
-      }
-
-
-
-
-      
+        res.status(500).send({status:"failed",Message:"There Is some Problem in server Cannot SEnd Email Now"})
+      }  
 
     } else {
       res
