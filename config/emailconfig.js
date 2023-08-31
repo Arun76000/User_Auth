@@ -7,9 +7,11 @@ const transporter=  nodemailer.createTransport({
   port: 587,
   secure: true,
   auth:{
-      user:'flame1asd@gmail.com',  //ADmin Email
-      pass:"kybphorforjfaso"      //Admin email password that is been gererated for app testing
+      user:'flame100622@gmail.com',  //ADmin Email
+      pass:"kybphorforjfasof"      //Admin email password that is been gererated for app testing
   }
 });
 
 module.exports = transporter;
+
+// this is to test the branch push

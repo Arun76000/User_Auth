@@ -116,7 +116,6 @@ exports.userLogin = async (req, res) => {
 
 // User Change Password
 // user can change password only if had already loged in
-
 exports.changePassword = async (req, res) => {
   const { password, password_confirm } = req.body;
   if (password && password_confirm) {
